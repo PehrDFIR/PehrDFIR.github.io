@@ -1,5 +1,17 @@
 <nav class="nav" aria-label="Primary">
-  <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a>
-  <a href="{{ '/blog.html' | relative_url }}" {% if page.url == '/blog.html' %}class="active"{% endif %}>Blog</a>
-  <a href="{{ '/about.html' | relative_url }}" {% if page.url == '/about.html' %}class="active"{% endif %}>About</a>
+  {% if page.url == '/' %}
+    <span class="active" aria-current="page">Home</span>
+  {% else %}
+    <a href="{{ '/' | relative_url }}">Home</a>
+  {% endif %}
+  {% if page.url == '/blog.html' %}
+    <span class="active" aria-current="page">Blog</span>
+  {% else %}
+    <a href="{{ '/blog.html' | relative_url }}">Blog</a>
+  {% endif %}
+  {% if page.url == '/about/' %}
+    <span class="active" aria-current="page">About</span>
+  {% else %}
+    <a href="{{ '/about/' | relative_url }}">About</a>
+  {% endif %}
 </nav>

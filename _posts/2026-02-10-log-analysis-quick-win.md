@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Log analysis quick win with simple filtering
 categories: [forensics]
 ---

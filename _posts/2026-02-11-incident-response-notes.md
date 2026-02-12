@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Incident response notes from a phishing case
 categories: [incident-response]
 ---

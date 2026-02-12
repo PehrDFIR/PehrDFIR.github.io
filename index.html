@@ -2,28 +2,43 @@
 layout: default
 title: Home
 ---
-<section class="card post-item">
-  <h1>{{ site.welcome_title | default: "Welcome" }}</h1>
-  <p class="muted">{{ site.welcome_intro | default: site.description }}</p>
+<section class="card post-item welcome-card">
+  {% assign home_avatar = site.profile_image | default: '/images/image.png' %}
+  <div class="welcome-head">
+    <div class="welcome-avatar no-image" aria-hidden="true">
+      {% if home_avatar contains '://' %}
+        <img src="{{ home_avatar }}" alt="" onload="this.parentElement.classList.remove('no-image');" onerror="this.parentElement.classList.add('no-image');">
+      {% else %}
+        <img src="{{ home_avatar | relative_url }}" alt="" onload="this.parentElement.classList.remove('no-image');" onerror="this.parentElement.classList.add('no-image');">
+      {% endif %}
+      <span class="avatar-fallback">{{ site.profile_initials | default: "P" }}</span>
+    </div>
+    <div>
+      <h1>{{ site.welcome_title | default: "Welcome" }}</h1>
+      <p class="tagline">Digital Forensics • Incident Response • Notes from the field</p>
+      <p class="muted">{{ site.welcome_intro | default: site.description }}</p>
+    </div>
+  </div>
 </section>
 
+<hr class="section-divider">
+
 {% if site.posts.size > 0 %}
-<section style="margin-top: 1.5rem;">
-  <h2>Latest Posts</h2>
+<section>
+  <h2 class="section-title">Latest Posts</h2>
   <div class="post-list">
     {% for post in site.posts limit:2 %}
-      <article class="card post-item">
-        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      <article class="card post-item post-card">
+        <h3 class="post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
         <p class="meta">{{ post.date | date: "%B %d, %Y" }}</p>
-        <p>{{ post.excerpt | strip_html | truncate: 220 }}</p>
-        <a class="btn" href="{{ post.url | relative_url }}">Read post</a>
+        <p class="post-preview">{{ post.excerpt | strip_html }}</p>
       </article>
     {% endfor %}
   </div>
 </section>
 {% else %}
-<section style="margin-top: 1.5rem;" class="card post-item">
-  <h2>No posts yet</h2>
+<section class="card post-item">
+  <h2 class="section-title">No posts yet</h2>
   <p>Create your first post in <code>_posts/YYYY-MM-DD-title.md</code> and it will show up here automatically.</p>
 </section>
 {% endif %}
