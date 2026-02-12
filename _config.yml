@@ -1,6 +1,35 @@
+title: Pehr DFIR
+email: your-email@example.com
+social_github: https://github.com/your-username
+social_x: https://x.com/your-handle
+description: >-
+  Digital forensics, incident response, and practical security notes.
+welcome_title: Welcome to Pehr DFIR
+welcome_intro: >-
+  This blog shares practical notes on digital forensics, incident response,
+  and security workflows. Expect short technical writeups, lessons learned,
+  and actionable tips.
+baseurl: ""
+url: ""
 remote_theme: pages-themes/hacker@v0.2.0
-plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
 
-title: [The title of your site]
-description: [A short description of your site's purpose]
+timezone: Europe/Stockholm
+markdown: kramdown
+permalink: /:categories/:year/:month/:day/:title/
+
+collections:
+  posts:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      author: Pehr
+      show_excerpts: true
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
